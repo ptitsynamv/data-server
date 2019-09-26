@@ -1,0 +1,14 @@
+parameters:
+  email:
+    name: email
+    description: Email
+    in: formData
+    required: true
+    type: string
+
+  password:
+    name: password
+    description: Password
+    in: formData
+    required: true
+    type: string
