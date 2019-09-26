@@ -18,7 +18,7 @@ const controller = require('../controllers/auth');
  *         description: login
  *         schema:
  *           type: object
- *           $ref: '#/definitions/User'
+ *           $ref: '#/definitions/AuthResponse'
  */
 
 router.post('/login', controller.login);
@@ -40,7 +40,7 @@ router.post('/login', controller.login);
  *         description: register
  *         schema:
  *           type: object
- *           $ref: '#/definitions/User'
+ *           $ref: '#/definitions/AuthResponse'
  */
 router.post('/register', controller.register);
 

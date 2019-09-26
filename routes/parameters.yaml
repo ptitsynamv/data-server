@@ -12,3 +12,48 @@ parameters:
     in: formData
     required: true
     type: string
+
+  limit:
+    name: limit
+    description: Limit
+    in: query
+    required: false
+    type: integer
+
+  offset:
+    name: offset
+    description: Offset
+    in: query
+    required: false
+    type: integer
+
+  id:
+    name: id
+    description: Article Id
+    in: path
+    required: true
+    type: string
+
+definitions:
+  ErrorResponse:
+    required:
+    - status
+    - message
+    properties:
+      status:
+        type: number
+      message:
+        type: string
+
+  AuthResponse:
+    required:
+    - token
+    properties:
+      token:
+        type: string
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header

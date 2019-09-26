@@ -1,38 +1,38 @@
 const Article = require('../models/Article');
-// import {from, combineLatest} from 'rxjs';
 
-module.exports.get = (req, res) => {
-    const id = req.query.id;
+module.exports.get = async (req, res) => {
+    const id = req.params.id;
     if (id) {
         const article = Article.findById(id);
         article.exec((err, post) => {
-            const {_id, date, subject, text} = post;
-            return res.status(200).json({
-                data: {id: _id, date, subject, text}
-            })
+            if (post) {
+                const {_id, date, subject, text} = post;
+                return res.status(200).json({
+                    _id, date, subject, text
+                })
+            } else {
+                return res.status(404).json({
+                    status: 404,
+                    message: 'Article not found',
+                })
+            }
+
+
         });
     } else {
-        const {limit, offset} = req.query;
+        const limit = req.query.limit ? parseInt(req.query.limit) : 5;
+        const offset = req.query.offset ? parseInt(req.query.offset) : 0;
         const articles = Article
             .find({})
-            .skip(parseInt(limit) * parseInt(offset))
-            .limit(parseInt(1));
+            .skip(limit * offset)
+            .limit(limit);
 
-        const totalSize = Article.find({}).count().exec();
-
-        // combineLatest(
-        //     from(articles),
-        //     from(totalSize),
-        // )
-        //     .subscribe((data) => {
-        //         console.log('data', data)
-        //     })
-
-
+        const totalSize = await Article.find({}).count().exec();
         articles.exec((err, posts) => {
             const data = posts ? posts.map(({_id, date, subject}) => ({id: _id, date, subject})) : [];
             return res.status(200).json({
-                data
+                count: totalSize,
+                list: data,
             })
         });
     }
