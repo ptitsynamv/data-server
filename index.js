@@ -4,9 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const passport = require('passport');
-const authRoutes = require('./routes/auth');
-const articleRoutes = require('./routes/article');
+// const passport = require('passport');
+const routes = require('./routes');
 const path = require('path');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -16,16 +15,16 @@ mongoose.connect(keys.mongoUrl, {useNewUrlParser: true})
     .then(() => console.log('mongo db connected'))
     .catch(error => console.log(error));
 
-app.use(passport.initialize());
-require('./middleware/passport')(passport);
+// app.use(passport.initialize());
+// require('./middleware/passport')(passport);
 app.use(morgan('dev'));
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/article', articleRoutes);
+// app.use('/api/auth', authRoutes);
+app.use('/api/article', routes.article);
 
 const options = {
     swaggerDefinition: {
