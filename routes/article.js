@@ -44,7 +44,14 @@ const passport = require('passport');
  *           $ref: '#/definitions/Article'
  */
 
-router.get('/', passport.authenticate('jwt', {session: false}), controller.get);
-router.get('/:id', passport.authenticate('jwt', {session: false}), controller.get);
+router.get('/',
+    passport.authenticate('bearer', {session: false}),
+    controller.get
+);
+
+router.get('/:id',
+    passport.authenticate('bearer', {session: false}),
+    controller.get
+);
 
 module.exports = router;

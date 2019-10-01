@@ -1,31 +1,30 @@
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+const keys = require('./config/index');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
-const authRoutes = require('./routes/auth');
-const articleRoutes = require('./routes/article');
+const routes = require('./routes');
 const path = require('path');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 const app = express();
-mongoose.connect(keys.mongoUrl, {useNewUrlParser: true})
+mongoose.connect(keys.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
     .then(() => console.log('mongo db connected'))
-    .catch(error => console.log(error));
+    .catch(error => console.log('mongo error', error));
 
 app.use(passport.initialize());
-require('./middleware/passport')(passport);
+require('./middleware/passport');
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/article', articleRoutes);
+app.use('/api/article', routes.article);
 
 const options = {
     swaggerDefinition: {
