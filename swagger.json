@@ -177,14 +177,13 @@
     "responses": {
     },
     "securitySchemes": {
-      "api_auth": {
+      "oAuthSample": {
         "type": "oauth2",
-        "in": "header",
-        "name": "api_auth",
+        "name": "oAuthSample",
         "flows": {
           "implicit": {
+            "description": "Oauth2. Use client_id='swagger-id'",
             "authorizationUrl": "http://localhost:3001/oauth2/authorize",
-            "refreshUrl": "http://localhost:3001/oauth",
             "scopes": {
               "api": "API Scope"
             },
@@ -197,13 +196,14 @@
       "jsonWebToken": {
         "type": "apiKey",
         "in": "header",
-        "name": "Authorization"
+        "name": "Authorization",
+        "description": "Не работает"
       }
     }
   },
   "security": [
     {
-      "jsonWebToken": []
+      "oAuthSample": []
     }
   ]
 }
