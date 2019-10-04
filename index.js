@@ -6,9 +6,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 const routes = require('./routes');
-const path = require('path');
-const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const port = process.env.PORT || 3000;
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 mongoose.connect(keys.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
@@ -23,36 +23,12 @@ app.use(cors());
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 app.use('/api/article', routes.article);
 
-const options = {
-    swaggerDefinition: {
-        info: {
-            title: 'API Antropogenez Server',
-            version: '1.0.0',
-        },
-    },
-    apis: [
-        './routes/*',
-        './models/*',
-    ],
-    basePath: '/',
-};
 
-const specs = swaggerJsdoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.get('/oauth2-redirect.html', function(req, res) {
+    res.sendFile(__dirname + "/node_modules/swagger-ui/dist/oauth2-redirect.html");
+});
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/dist/client'));
-    app.get('*', (req, res) => {
-        res.sendFile(
-            path.resolve(
-                __dirname, 'client', 'dist', 'client', 'index.html'
-            )
-        )
-    });
-}
-
-const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server start on ${port}`));

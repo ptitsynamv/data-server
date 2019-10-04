@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.2",
+  "basePath": "/",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Antropogenez data server"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local"
+    }
+  ],
+  "paths": {
+    "/api/article": {
+      "get": {
+        "description": "Get all articles list",
+        "tags": [
+          "Article"
+        ],
+        "responses": {
+          "200": {
+            "description": "get all",
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/parameters/ArticleList"
+            }
+          }
+        }
+      }
+    },
+    "/api/article/{id}": {
+      "get": {
+        "description": "Get article by id",
+        "tags": [
+          "Article"
+        ],
+        "responses": {
+          "200": {
+            "description": "article by id",
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/parameters/ArticleList"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "email": {
+        "name": "email",
+        "description": "Email",
+        "in": "formData",
+        "required": "true",
+        "type": "string"
+      },
+      "password": {
+        "name": "password",
+        "description": "Password",
+        "in": "formData",
+        "required": "true",
+        "type": "string"
+      },
+      "limit": {
+        "name": "limit",
+        "description": "Limit",
+        "in": "query",
+        "required": "false",
+        "type": "integer"
+      },
+      "offset": {
+        "name": "offset",
+        "description": "Offset",
+        "in": "query",
+        "required": "false",
+        "type": "integer"
+      },
+      "id": {
+        "name": "id",
+        "description": "Article Id",
+        "in": "path",
+        "required": "true",
+        "type": "string"
+      },
+      "ArticleList": {
+        "required": [
+          "list",
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "list": {
+            "type": "array"
+          },
+          "items": {
+            "$ref": "#/components/parameters/Article"
+          }
+        }
+      },
+      "Article": {
+        "required": [
+          "_id",
+          "subject"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "required": [
+          "status",
+          "message"
+        ],
+        "properties": {
+          "status": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Conversion": {
+        "type": "object",
+        "properties": {
+          "guid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "countType": {
+            "type": "string"
+          },
+          "conversionWindow": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "count": {
+            "type": "integer",
+            "readOnly": true
+          }
+        }
+      }
+    },
+    "responses": {
+    },
+    "securitySchemes": {
+      "oAuthSample": {
+        "type": "oauth2",
+        "name": "oAuthSample",
+        "flows": {
+          "implicit": {
+            "description": "Oauth2. Use client_id='swagger-id'",
+            "authorizationUrl": "http://localhost:3001/oauth2/authorize",
+            "scopes": {
+              "api": "API Scope"
+            },
+            "RedirectUris": [
+              "http://localhost:7777/7777"
+            ]
+          }
+        }
+      },
+      "jsonWebToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Не работает"
+      }
+    }
+  },
+  "security": [
+    {
+      "oAuthSample": []
+    }
+  ]
+}
