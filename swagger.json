@@ -24,7 +24,7 @@
             "description": "get all",
             "schema": {
               "type": "object",
-              "$ref": "#/components/parameters/ArticleList"
+              "$ref": "#/components/schemas/ArticleList"
             }
           }
         }
@@ -41,7 +41,7 @@
             "description": "article by id",
             "schema": {
               "type": "object",
-              "$ref": "#/components/parameters/ArticleList"
+              "$ref": "#/components/schemas/ArticleList"
             }
           }
         }
@@ -84,7 +84,9 @@
         "in": "path",
         "required": "true",
         "type": "string"
-      },
+      }
+    },
+    "schemas": {
       "ArticleList": {
         "required": [
           "list",
@@ -98,7 +100,7 @@
             "type": "array"
           },
           "items": {
-            "$ref": "#/components/parameters/Article"
+            "$ref": "#/components/schemas/Article"
           }
         }
       },
@@ -137,52 +139,13 @@
         }
       }
     },
-    "schemas": {
-      "Conversion": {
-        "type": "object",
-        "properties": {
-          "guid": {
-            "type": "string",
-            "readOnly": true
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "dateUpdated": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "title": {
-            "type": "string"
-          },
-          "countType": {
-            "type": "string"
-          },
-          "conversionWindow": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number"
-          },
-          "count": {
-            "type": "integer",
-            "readOnly": true
-          }
-        }
-      }
-    },
     "responses": {
     },
     "securitySchemes": {
       "oAuthSample": {
         "type": "oauth2",
-        "name": "oAuthSample",
         "flows": {
           "implicit": {
-            "description": "Oauth2. Use client_id='swagger-id'",
             "authorizationUrl": "http://localhost:3001/oauth2/authorize",
             "scopes": {
               "api": "API Scope"
