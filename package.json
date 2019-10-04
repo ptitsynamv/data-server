@@ -29,7 +29,6 @@
     "path": "^0.12.7",
     "request": "^2.88.0",
     "rxjs": "^6.4.0",
-    "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.1"
   },
   "devDependencies": {
