@@ -20,7 +20,7 @@
     "jsonwebtoken": "^8.4.0",
     "mkdir": "0.0.2",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.4.12",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
