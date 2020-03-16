@@ -1,5 +1,5 @@
 const article = require('./Article');
 
-module.exports = {
+export {
     article,
 };

@@ -1,8 +1,9 @@
-const models = require('../models');
+import * as models from '../models';
 
-module.exports.get = async (req, res) => {
+export const get = async (req, res) => {
     const id = req.params.id;
     if (id) {
+
         const article = models.article.findById(id);
         article.exec((err, post) => {
             if (post) {
@@ -37,3 +38,4 @@ module.exports.get = async (req, res) => {
         });
     }
 };
+
