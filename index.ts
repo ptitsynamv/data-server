@@ -13,7 +13,7 @@ const swaggerDocument = require('./swagger.json');
 const app = express();
 mongoose.connect(keys.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
     .then(() => console.log('mongo db connected'))
-    .catch(error => console.log('mongo error', error));
+    .catch((error) => console.log('mongo error', error));
 
 app.use(passport.initialize());
 require('./middleware/passport');
@@ -31,4 +31,4 @@ app.get('/oauth2-redirect.html', function(req, res) {
     res.sendFile(__dirname + "/node_modules/swagger-ui/dist/oauth2-redirect.html");
 });
 
-app.listen(port, () => console.log(`server start on ${port}`));
+app.listen(port, () => console.log(`server start on http://localhost:${port}`));

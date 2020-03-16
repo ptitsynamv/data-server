@@ -1,13 +1,16 @@
 {
   "name": "antropogenez-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "https://github.com/ptitsynamv/antropogenez-server.git",
   "author": "ptitsynamv <ptitsynamv@gmail.com>",
   "license": "MIT",
   "scripts": {
     "server": "node index",
-    "start": "nodemon index"
+    "start": "nodemon index",
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly ./index.ts",
+    "prod": "tsc && node ./build/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -33,6 +36,10 @@
     "swagger-ui-express": "^4.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "@types/express": "^4.17.3",
+    "codelyzer": "^5.2.1",
+    "nodemon": "^1.18.10",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
   }
 }
