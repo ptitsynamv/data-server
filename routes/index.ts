@@ -1,3 +1,3 @@
-const article = require('./article');
+import article from './article'
 
 export {article}

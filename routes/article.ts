@@ -5,13 +5,13 @@ import passport from 'passport'
 const router = express.Router();
 
 router.get('/',
-    passport.authenticate('bearer', {session: false}),
+    // passport.authenticate('bearer', {session: false}),
     controller.get
 );
 
 router.get('/:id',
-    passport.authenticate('bearer', {session: false}),
-    controller.get
+    // passport.authenticate('bearer', {session: false}),
+    controller.getById
 );
 
-module.exports = router;
+export default router;
