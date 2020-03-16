@@ -1,15 +1,16 @@
 {
   "name": "antropogenez-server",
   "version": "2.0.0",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "repository": "https://github.com/ptitsynamv/antropogenez-server.git",
   "author": "ptitsynamv <ptitsynamv@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node-dev --respawn --transpileOnly ./index.ts",
-    "migrations": "ts-node-dev --respawn --transpileOnly ./db/migrations/index.ts",
-    "start-prod": "yarn build && node ./build/index.js"
+    "start": "ts-node-dev --respawn --transpileOnly src/index.ts",
+    "migrations": "ts-node-dev --respawn --transpileOnly src/db/migrations/index.ts",
+    "start-prod": "yarn build && node ./build/index.js",
+    "docker:build": "docker build -t ptitsynamv/antropogenez-server ."
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

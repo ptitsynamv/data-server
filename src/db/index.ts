@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     database: keys.mysql.user,
 });
 
-connection.connect(function (err) {
+connection.connect(null, function (err) {
     if (err) {
         console.error('error connecting: ' + err.stack);
         return;
