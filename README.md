@@ -7,10 +7,10 @@ Creads:
   * http://localhost:3000 - server
   * http://localhost:3000/api-docs/ - swagger documentation
 
-##Build
+## Build
 Run `yarn build`. Project will be created in `/build` directory.
 
-##Develop
+## Develop
 Error: `address already in use :::3000` can be solved with:
 `lsof -wni tcp:3000`
 `kill {id}`
