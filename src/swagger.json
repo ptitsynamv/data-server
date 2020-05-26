@@ -19,6 +19,26 @@
         "tags": [
           "Article"
         ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "path",
+            "description": "limit of articles",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "description": "offset of articles",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "get all",
@@ -35,6 +55,17 @@
         "description": "Get article by id",
         "tags": [
           "Article"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of article object",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
         ],
         "responses": {
           "200": {

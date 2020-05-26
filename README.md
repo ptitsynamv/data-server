@@ -1,11 +1,20 @@
-# server 
+# Installation
+1. Set your keys in `config/keys.ts`;
+2. Use `https://github.com/ptitsynamv/oauth2-server` project for authorization with Oauth2. 
+Creads:
+    * client id:swagger-id
+3. Run `yarn && yarn start`:
+  * http://localhost:3000 - server
+  * http://localhost:3000/api-docs/ - swagger documentation
 
-MondoDB on mlab.com.
+## Build
+Run `yarn build`. Project will be created in `/build` directory.
 
-http://localhost:3000/api-docs/ - documentation
-
-address already in use :::3000
+## Develop
+Error: `address already in use :::3000` can be solved with:
 `lsof -wni tcp:3000`
 `kill {id}`
 
-Used Oauth2.
+## DB
+remotemysql
+
