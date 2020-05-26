@@ -5,8 +5,9 @@ export default {
         userInfoUrl: '/oauth2/userinfo'
     },
     mysql: {
-        host: 'remotemysql.com',
-        user: '9yEZ88lSL6',
-        password: 'D3mlcgKwBA',
+        host: 'sql7.freemysqlhosting.net',
+        user: 'sql7343457',
+        password: 'as8vNssY2d',
+        database: 'sql7343457',
     }
 }

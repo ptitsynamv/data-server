@@ -1,11 +1,21 @@
 import {Article} from "./interfaces";
 import connection from '../db';
-import express, {Application, Request, Response, NextFunction} from "express";
+import {Request, Response} from "express";
 
 const columns = ['id', 'subject', 'date', 'text'];
 const tableName = 'article';
 
-export const getById = async (req: Request, res: Response) => {
+export interface CustomRequest extends Request {
+    params: {
+        id: string;
+    },
+    query: {
+        limit: string;
+        offset: string;
+    }
+}
+
+export const getById = async (req: CustomRequest, res: Response) => {
     const id = req.params.id;
 
     if (!id) {
@@ -30,7 +40,7 @@ export const getById = async (req: Request, res: Response) => {
     });
 };
 
-export const get = async (req: Request, res: Response) => {
+export const get = async (req: CustomRequest, res: Response) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 5;
     const offset = req.query.offset ? parseInt(req.query.offset) : 0;
 

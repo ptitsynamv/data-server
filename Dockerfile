@@ -1,17 +1,18 @@
-FROM node:12
+FROM node:current-slim
 
-WORKDIR /home/maria/Projects/antropogenez-server/dist
+WORKDIR /home/maria/Projects/antropogenez-server
 
-COPY ./src ./src
-COPY package*.json ./
-COPY tsconfig*.json ./
-COPY tslint.json ./
-COPY yarn.lock ./
-COPY src/index.ts ./
+COPY src src
+COPY package.json .
+COPY tsconfig.json .
+COPY tslint.json .
+COPY yarn.lock .
 
 RUN yarn install
 RUN yarn build
-#
-#EXPOSE 8080
-#
-#CMD [ "node", "./build/index.js" ]
+
+EXPOSE 3000
+COPY ./build ./build
+
+CMD [ "node", "./build/index.js" ]
+

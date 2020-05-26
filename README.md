@@ -16,5 +16,14 @@ Error: `address already in use :::3000` can be solved with:
 `kill {id}`
 
 ## DB
-remotemysql
+Server: sql7.freemysqlhosting.net
+Name: sql7343457
+Username: sql7343457
+Password: as8vNssY2d
+Port number: 3306
+
+## Docker
+1. `yarn docker:build`
+2. `yarn docker:run`
+3. Open http://localhost:8000/api-docs/ to see your project.
 
