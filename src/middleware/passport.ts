@@ -1,7 +1,9 @@
-const passport = require('passport');
-const BearerStrategy = require('passport-http-bearer').Strategy;
-const fetch = require('node-fetch');
-const keys = require('../config');
+import passport from 'passport'
+import fetch from 'node-fetch'
+import bearer from 'passport-http-bearer';
+import keys from '../config/keys';
+
+const BearerStrategy = bearer.Strategy;
 
 passport.use(new BearerStrategy(
     (token, done) => {

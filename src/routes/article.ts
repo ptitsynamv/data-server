@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express'
+import * as controller from '../controllers/article'
+import passport from 'passport'
+
 const router = express.Router();
-const controller = require('../controllers/article');
-const passport = require('passport');
 
 router.get('/',
     passport.authenticate('bearer', {session: false}),
@@ -10,7 +11,7 @@ router.get('/',
 
 router.get('/:id',
     passport.authenticate('bearer', {session: false}),
-    controller.get
+    controller.getById
 );
 
-module.exports = router;
+export default router;
