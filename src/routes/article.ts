@@ -11,7 +11,7 @@ router.get('/',
 
 router.get('/:id',
     passport.authenticate('bearer', {session: false}),
-    controller.getById
+    controller.get
 );
 
 export default router;
