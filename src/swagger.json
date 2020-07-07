@@ -22,7 +22,7 @@
         "parameters": [
           {
             "name": "limit",
-            "in": "path",
+            "in": "query",
             "description": "limit of articles",
             "required": false,
             "schema": {
@@ -31,7 +31,7 @@
           },
           {
             "name": "offset",
-            "in": "path",
+            "in": "query",
             "description": "offset of articles",
             "required": false,
             "schema": {
@@ -63,7 +63,7 @@
             "description": "id of article object",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -173,17 +173,26 @@
     "responses": {
     },
     "securitySchemes": {
-      "oAuthSample": {
+      "oAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://testmyoauth2orize-env.eba-5wb3fx37.us-east-2.elasticbeanstalk.com/oauth2/authorize",
+            "refreshUrl": "mock-refreshUrl",
+            "scopes": {
+              "api": "API Scope"
+            }
+          }
+        }
+      },
+      "oAuthLocal": {
         "type": "oauth2",
         "flows": {
           "implicit": {
             "authorizationUrl": "http://localhost:3001/oauth2/authorize",
             "scopes": {
               "api": "API Scope"
-            },
-            "RedirectUris": [
-              "http://localhost:7777/7777"
-            ]
+            }
           }
         }
       },
@@ -197,7 +206,12 @@
   },
   "security": [
     {
-      "oAuthSample": []
+      "oAuth2": [
+        "api"
+      ],
+      "oAuthLocal": [
+        "api"
+      ]
     }
   ]
 }

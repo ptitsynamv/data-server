@@ -1,9 +1,8 @@
 # Installation
-1. Set your keys in `config/keys.ts`;
-2. Use `https://github.com/ptitsynamv/oauth2-server` project for authorization with Oauth2. 
+1. Use `https://github.com/ptitsynamv/oauth2-server` project for authorization with Oauth2. 
 Creads:
     * client id:swagger-id
-3. Run `yarn && yarn start`:
+2. Run `yarn && yarn start`:
   * http://localhost:3000 - server
   * http://localhost:3000/api-docs/ - swagger documentation
 

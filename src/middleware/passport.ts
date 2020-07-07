@@ -15,6 +15,7 @@ passport.use(new BearerStrategy(
         })
             .then(res => res.json())
             .then((json) => {
+
                 done(null, json);
             })
             .catch((err) => {

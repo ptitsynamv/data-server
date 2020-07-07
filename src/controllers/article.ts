@@ -1,56 +1,40 @@
-import {Article} from "./interfaces";
-import connection from '../db';
-import {Request, Response} from "express";
+import * as models from '../models';
 
-const columns = ['id', 'subject', 'date', 'text'];
-const tableName = 'article';
+export const get = async (req, res) => {
+    const id: string = req.params.id;
+    if (id) {
+        const article = models.article.findById(id);
+        article.exec((err, post) => {
+            if (post) {
+                const {_id, date, subject, text} = post;
+                return res.status(200).json({
+                    _id, date, subject, text
+                })
+            } else {
+                return res.status(404).json({
+                    status: 404,
+                    message: 'Article not found',
+                })
+            }
 
-export interface CustomRequest extends Request {
-    params: {
-        id: string;
-    },
-    query: {
-        limit: string;
-        offset: string;
+
+        });
+    } else {
+        const limit = req.query.limit ? parseInt(req.query.limit) : 5;
+        const offset = req.query.offset ? parseInt(req.query.offset) : 0;
+        const articles = models.article
+            .find({})
+            .skip(limit * offset)
+            .limit(limit);
+
+        const totalSize = await models.article.find({}).count().exec();
+        articles.exec((err, posts) => {
+            const data = posts ? posts.map(({_id, date, subject}) => ({id: _id, date, subject})) : [];
+            return res.status(200).json({
+                count: totalSize,
+                list: data,
+            })
+        });
     }
-}
-
-export const getById = async (req: CustomRequest, res: Response) => {
-    const id = req.params.id;
-
-    if (!id) {
-        return res.status(404).json({
-            status: 400,
-            message: 'Id is undefined',
-        })
-    }
-
-    connection.query('SELECT ?? FROM ?? WHERE id = ?', [columns, tableName, id], function (error, post: Article, fields) {
-        if (error) throw error;
-
-        if (post && post[0]) {
-            const {date, subject, text} = post[0];
-
-            return res.status(200).json({_id: post[0].id, date, subject, text})
-        }
-        return res.status(404).json({
-            status: 404,
-            message: 'Article not found',
-        })
-    });
-};
-
-export const get = async (req: CustomRequest, res: Response) => {
-    const limit = req.query.limit ? parseInt(req.query.limit) : 5;
-    const offset = req.query.offset ? parseInt(req.query.offset) : 0;
-
-    connection.query('SELECT ?? FROM ?? LIMIT ? OFFSET ?', [columns, tableName, limit, offset], function (error, results: Article[], fields) {
-        if (error) throw error;
-
-        return res.status(200).json({
-            count: results.length ? results.length : 0,
-            list: results.length ? results : [],
-        })
-    });
 };
 
