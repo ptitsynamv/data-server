@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node-dev --respawn --transpileOnly src/index.ts",
+    "start": "ts-node-dev --respawn --transpile-only src/index.ts",
     "migrations": "ts-node-dev --respawn --transpileOnly src/db/migrations/index.ts",
     "start-prod": "yarn build && node ./build/index.js",
     "docker:show": "docker ps --all",
@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.9.22",
+    "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.1",
@@ -28,7 +28,7 @@
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
-    "swagger-ui": "^3.28.0",
+    "swagger-ui": "^3.30.0",
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "@types/express": "^4.17.7",
     "@types/request": "^2.48.3",
     "@types/request-promise": "^4.1.44",
-    "ts-node-dev": "^1.0.0-pre.50",
-    "typescript": "^3.9.6"
+    "ts-node-dev": "^1.0.0-pre.52",
+    "typescript": "^3.9.7"
   }
 }

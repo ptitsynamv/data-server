@@ -1,6 +1,8 @@
 import * as models from '../models';
+import {Request, Response} from "express";
+import {ErrorResponse, GetArticleResponseI, GetArticlesResponseI} from "../interfaces/interfaces";
 
-export const get = async (req, res) => {
+export const get = async (req, res: Response<GetArticleResponseI | ErrorResponse | GetArticlesResponseI>) => {
     const id: string = req.params.id;
     if (id) {
         const article = models.article.findById(id);

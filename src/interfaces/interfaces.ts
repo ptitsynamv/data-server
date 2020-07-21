@@ -1,8 +1,20 @@
 export interface ErrorResponse {
-    success: boolean;
+    status: number;
     message: string;
 }
 
-export interface ProcessEnv {
-    [key: string]: string | undefined
+export interface GetArticleResponseI {
+    _id: string;
+    date: string;
+    subject: string;
+    text: string;
+}
+
+export interface GetArticlesResponseI {
+    count: number;
+    list: {
+        id: string
+        date: string;
+        subject: string;
+    }
 }

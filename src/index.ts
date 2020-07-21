@@ -33,7 +33,4 @@ app.get('/oauth2-redirect.html', function (req, res) {
 });
 
 
-app.listen(port, () => console.log(`
-server start: http://localhost:${port}
-documentation: http://localhost:${port}/api-docs/ 
-`));
+app.listen(port, () => console.log(`documentation: http://localhost:${port}/api-docs/`));
