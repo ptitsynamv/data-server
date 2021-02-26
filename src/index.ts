@@ -1,5 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import mongoose from 'mongoose';
-import keys from './config';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -8,12 +10,16 @@ import passport from 'passport';
 import * as routes from './routes';
 import swaggerUi from 'swagger-ui-express';
 import path from 'path';
-import * as swaggerDocument from './swagger.json';
+import config from './swagger.config';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const app = express();
 
-mongoose.connect(keys.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+})
     .then(() => console.log('mongo db connected'))
     .catch((error) => console.log('mongo error', error));
 
@@ -24,14 +30,21 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html', (err) => {
+        res.end();
+        if (err) throw(err);
+    });
+});
+
 app.use('/api/article', routes.article);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(JSON.stringify(config))));
 app.get('/oauth2-redirect.html', function (req, res) {
     const file = path.resolve(__dirname + "/../node_modules/swagger-ui/dist/oauth2-redirect.html");
     res.sendFile(file);
 });
-
 
 app.listen(port, () => console.log(`
 server start: http://localhost:${port}

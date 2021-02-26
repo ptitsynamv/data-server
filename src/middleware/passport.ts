@@ -1,13 +1,12 @@
 import passport from 'passport'
 import fetch from 'node-fetch'
 import bearer from 'passport-http-bearer';
-import keys from '../config/keys';
 
 const BearerStrategy = bearer.Strategy;
 
 passport.use(new BearerStrategy(
     (token, done) => {
-        fetch(keys.oauth2Server.url + keys.oauth2Server.userInfoUrl, {
+        fetch(process.env.OAUTH_SERVER_URL + process.env.USER_INFO_URL, {
             headers: {
                 Authorization: 'Bearer ' + token,
             },

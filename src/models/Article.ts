@@ -17,5 +17,5 @@ const articleSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('articles', articleSchema);
+module.exports = mongoose.model('antropogenez-articles', articleSchema);
 
