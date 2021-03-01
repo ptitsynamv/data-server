@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    name: Deploy to server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send files to server
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.SFTP_IP }}
+          FTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          METHOD: sftp
+          PORT: ${{ secrets.SFTP_PORT }}
+          LOCAL_DIR: '.'
+          REMOTE_DIR: '/var/projects/data-server'
+          ARGS: --verbose
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SFTP_IP }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
+            cd /var/projects/data-server
+            npm install
+            npm run build
+            pm2 restart build/index.js --name data-server

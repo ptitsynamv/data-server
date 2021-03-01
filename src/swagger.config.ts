@@ -4,7 +4,7 @@ const config = {
     'info': {
         'description': 'server',
         'version': '2.0.0',
-        'title': 'Antropogenez data server',
+        'title': 'Data server',
     },
     'servers': [
         {

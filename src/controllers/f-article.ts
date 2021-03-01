@@ -31,7 +31,7 @@ export const get = async (req, res) => {
 
         const totalSize = await fArticle.estimatedDocumentCount().exec();
         articles.exec((err, posts) => {
-            const data = posts ? posts.map(({_id, date, subject}) => ({id: _id, date, subject})) : [];
+            const data = posts ? posts.map(({_id, title, url}) => ({id: _id, title, url})) : [];
             return res.status(200).json({
                 count: totalSize,
                 list: data,
