@@ -1,6 +1,6 @@
 FROM node:current-slim
 
-WORKDIR /home/maria/Projects/antropogenez-server
+WORKDIR /home/maria/Projects/data-server
 
 COPY src src
 COPY package.json .

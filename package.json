@@ -2,7 +2,7 @@
   "name": "data-server",
   "version": "2.0.1",
   "main": "src/index.ts",
-  "repository": "https://github.com/ptitsynamv/antropogenez-server.git",
+  "repository": "https://github.com/ptitsynamv/data-server.git",
   "author": "ptitsynamv <ptitsynamv@gmail.com>",
   "license": "MIT",
   "scripts": {
