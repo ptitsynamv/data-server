@@ -6,7 +6,7 @@
     "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": "src",
     "outDir": "./build",
     "resolveJsonModule": true,
     "lib": [
@@ -14,15 +14,19 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
-      "./node_modules/@types"
+      "node_modules/@types"
     ],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "./node_modules/*"
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "**/*.spec.ts",
+    "**/*.d.ts"
   ]
 }

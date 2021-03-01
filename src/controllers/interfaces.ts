@@ -21,3 +21,7 @@ export interface NewFArticle {
 export interface FArticle extends NewFArticle {
     id: string;
 }
+export interface FArticlesResponse {
+    count: number;
+    list: FArticle[];
+}
