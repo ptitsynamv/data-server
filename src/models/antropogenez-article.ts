@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
 
-const articleSchema = new Schema({
+const antropogenezArticleSchema = new Schema({
     subject: {
         type: String,
         required: true,
@@ -17,5 +17,5 @@ const articleSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('antropogenez-articles', articleSchema);
+module.exports = mongoose.model('antropogenez-articles', antropogenezArticleSchema);
 

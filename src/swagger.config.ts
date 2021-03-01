@@ -2,14 +2,14 @@ const config = {
     'openapi': '3.0.2',
     'basePath': '/',
     'info': {
-        'description': '',
-        'version': '1.0.0',
+        'description': 'server',
+        'version': '2.0.0',
         'title': 'Antropogenez data server',
     },
     'servers': [
         {
-            'url': 'http://localhost:3000/',
-            'description': 'Local',
+            'url': `${process.env.DEPLOY_URL}:${process.env.PORT}/`,
+            'description': 'Server',
         },
     ],
     'paths': {
@@ -47,6 +47,34 @@ const config = {
                             '$ref': '#/components/schemas/ArticleList',
                         },
                     },
+                    '400': {
+                        'description': 'Error',
+                    },
+                },
+            },
+            'post': {
+                'description': 'Create new article',
+                'tags': [
+                    'Article',
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            'schema': {
+                                'type': 'object',
+                                '$ref': '#/components/schemas/NewArticle',
+                            },
+                        },
+                    },
+                },
+                "responses": {
+                    "200": {
+                        "description": "Article created",
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/Article',
+                        },
+                    },
                 },
             },
         },
@@ -74,6 +102,100 @@ const config = {
                             'type': 'object',
                             '$ref': '#/components/schemas/ArticleList',
                         },
+                    },
+                },
+            },
+            'put': {
+                'description': 'Replace all properties',
+                'tags': [
+                    'Article',
+                ],
+                'parameters': [
+                    {
+                        'name': 'id',
+                        'in': 'path',
+                        'description': 'id of article object',
+                        'required': true,
+                        'schema': {
+                            'type': 'string',
+                        },
+                    },
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            'schema': {
+                                'type': 'object',
+                                '$ref': '#/components/schemas/NewArticle',
+                            },
+                        },
+                    },
+                },
+                "responses": {
+                    "200": {
+                        "description": "Article updated",
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/Article',
+                        },
+                    },
+                },
+            },
+            'patch': {
+                'description': 'Partial replacement of properties',
+                'tags': [
+                    'Article',
+                ],
+                'parameters': [
+                    {
+                        'name': 'id',
+                        'in': 'path',
+                        'description': 'id of article object',
+                        'required': true,
+                        'schema': {
+                            'type': 'string',
+                        },
+                    },
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            'schema': {
+                                'type': 'object',
+                                '$ref': '#/components/schemas/NewArticle',
+                            },
+                        },
+                    },
+                },
+                "responses": {
+                    "200": {
+                        "description": "Article updated",
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/Article',
+                        },
+                    },
+                },
+            },
+            'delete': {
+                'description': 'Delete an article',
+                'tags': [
+                    'Article',
+                ],
+                'parameters': [
+                    {
+                        'name': 'id',
+                        'in': 'path',
+                        'description': 'id of article object',
+                        'required': true,
+                        'schema': {
+                            'type': 'string',
+                        },
+                    },
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Article deleted",
                     },
                 },
             },
@@ -155,6 +277,16 @@ const config = {
                     },
                 },
             },
+            'NewArticle': {
+                'properties': {
+                    'subject': {
+                        'type': 'string',
+                    },
+                    'text': {
+                        'type': 'string',
+                    },
+                },
+            },
             'ErrorResponse': {
                 'required': [
                     'status',
@@ -169,6 +301,7 @@ const config = {
                     },
                 },
             },
+
         },
         'responses': {},
         'securitySchemes': {

@@ -1,5 +1,4 @@
-const article = require('./Article');
+const antropogenezArticle = require('./antropogenez-article');
+const fArticle = require('./f-article');
 
-export {
-    article,
-};
+export {antropogenezArticle, fArticle};

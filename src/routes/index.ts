@@ -1,3 +1,4 @@
-import article from './article'
+import antropogenezArticle from './antropogenez-article'
+import fArticle from './f-article'
 
-export {article}
+export {antropogenezArticle, fArticle}
