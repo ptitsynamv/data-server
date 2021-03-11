@@ -29,4 +29,4 @@ jobs:
             cd /var/projects/data-server
             npm install
             npm run build
-            pm2 restart build/index.js --name data-server
+            pm2 stop data-server; pm2 delete data-server; pm2 start build/index.js --name data-server

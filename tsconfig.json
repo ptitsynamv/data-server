@@ -6,7 +6,7 @@
     "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": "src",
+    "rootDir": "./src",
     "outDir": "./build",
     "resolveJsonModule": true,
     "lib": [
@@ -20,7 +20,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts"
+    "./src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
