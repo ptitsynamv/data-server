@@ -15,7 +15,6 @@ jobs:
           FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
           METHOD: sftp
           PORT: ${{ secrets.SFTP_PORT }}
-          LOCAL_DIR: './'
           REMOTE_DIR: '/var/projects/data-server'
           ARGS: --verbose --transfer-all
 
