@@ -8,17 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send files to server
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ${{ secrets.SFTP_IP }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          protocol: ftp
-          port: ${{ secrets.SFTP_PORT }}
-          local-dir: '/'
-          server-dir: '/var/projects/data-server/'
-          dry-run: true
-          log-level: verbose
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.SFTP_IP }}
+          FTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          METHOD: sftp
+          PORT: ${{ secrets.SFTP_PORT }}
+          LOCAL_DIR: '.'
+          REMOTE_DIR: '/var/projects/data-server'
+          ARGS: --verbose --delete --transfer-all
 
       - name: Executing remote ssh commands using password
         uses: appleboy/ssh-action@master
