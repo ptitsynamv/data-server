@@ -11,13 +11,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Send files to server
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: '.'
-          remote:  '/var/projects/data-server'
-          host: ${{ secrets.SFTP_IP }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.SFTP_IP }}
+          FTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          METHOD: sftp
+          PORT: ${{ secrets.SFTP_PORT }}
+          LOCAL_DIR: '.'
+          REMOTE_DIR: '/var/projects/data-server'
+          ARGS: --verbose --delete --exclude-glob=.git*/**
 
       - name: Executing remote ssh commands using password
         uses: appleboy/ssh-action@master
