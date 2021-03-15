@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Send files to server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        env:
+        with:
           server: ${{ secrets.SFTP_IP }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
@@ -19,7 +19,8 @@ jobs:
           server-dir: '/var/projects/data-server'
           dry-run: true
           log-level: verbose
-      - name: executing remote ssh commands using password
+
+      - name: Executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SFTP_IP }}
