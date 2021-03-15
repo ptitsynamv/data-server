@@ -15,7 +15,7 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftps
           port: ${{ secrets.SFTP_PORT }}
-          local-dir: '.'
+          local-dir: '/'
           server-dir: '/var/projects/data-server'
           dry-run: true
           log-level: verbose
