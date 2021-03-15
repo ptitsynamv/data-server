@@ -17,7 +17,7 @@ jobs:
           PORT: ${{ secrets.SFTP_PORT }}
           LOCAL_DIR: '.'
           REMOTE_DIR: 'var/projects/data-server'
-          ARGS: --verbose --transfer-all
+          ARGS: --verbose
 
       - name: Executing remote ssh commands using password
         uses: appleboy/ssh-action@master
