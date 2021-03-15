@@ -16,7 +16,7 @@ jobs:
           METHOD: sftp
           PORT: ${{ secrets.SFTP_PORT }}
           LOCAL_DIR: '.'
-          REMOTE_DIR: '/var/projects/data-server'
+          REMOTE_DIR: 'var/projects/data-server'
           ARGS: --verbose --transfer-all
 
       - name: Executing remote ssh commands using password
