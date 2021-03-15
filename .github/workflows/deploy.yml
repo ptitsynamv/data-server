@@ -17,7 +17,7 @@ jobs:
           PORT: ${{ secrets.SFTP_PORT }}
           LOCAL_DIR: '.'
           REMOTE_DIR: '/var/projects/data-server'
-          ARGS: --verbose --delete --transfer-all
+          ARGS: --verbose --delete --transfer-all --exclude-glob=node_modules
 
       - name: Executing remote ssh commands using password
         uses: appleboy/ssh-action@master
