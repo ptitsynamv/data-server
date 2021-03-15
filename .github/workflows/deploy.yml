@@ -7,6 +7,9 @@ jobs:
     name: Deploy to server
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Send files to server
         uses: garygrossgarten/github-action-scp@release
         with:
