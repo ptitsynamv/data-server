@@ -15,9 +15,8 @@ jobs:
           FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
           METHOD: sftp
           PORT: ${{ secrets.SFTP_PORT }}
-          LOCAL_DIR: '.'
+          LOCAL_DIR: './'
           REMOTE_DIR: '/var/projects/data-server'
-          ARGS: --verbose
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
