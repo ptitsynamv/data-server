@@ -21,7 +21,17 @@ export interface NewFArticle {
 export interface FArticle extends NewFArticle {
     id: string;
 }
+
 export interface FArticlesResponse {
     count: number;
     list: FArticle[];
+}
+
+export interface PublicServiceWaterI extends NewPublicServiceWaterI {
+    id: string;
+}
+
+export interface NewPublicServiceWaterI {
+    data: string;
+    date: string;
 }

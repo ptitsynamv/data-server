@@ -200,6 +200,121 @@ const config = {
                 },
             },
         },
+        '/api/public-service-water': {
+            'get': {
+                'description': 'Get all public service water list',
+                'tags': [
+                    'PublicServiceWater',
+                ],
+                'parameters': [
+                    {
+                        'name': 'limit',
+                        'in': 'query',
+                        'description': 'limit',
+                        'required': false,
+                        'schema': {
+                            'type': 'integer',
+                        },
+                    },
+                    {
+                        'name': 'offset',
+                        'in': 'query',
+                        'description': 'offset',
+                        'required': false,
+                        'schema': {
+                            'type': 'integer',
+                        },
+                    },
+                ],
+                'responses': {
+                    '200': {
+                        'description': 'get all',
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/PublicServiceWater',
+                        },
+                    },
+                    '400': {
+                        'description': 'Error',
+                    },
+                },
+            },
+            'post': {
+                'description': 'Create new PublicServiceWater',
+                'tags': [
+                    'PublicServiceWater',
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            'schema': {
+                                'type': 'object',
+                                '$ref': '#/components/schemas/NewPublicServiceWater',
+                            },
+                        },
+                    },
+                },
+                "responses": {
+                    "200": {
+                        "description": "PublicServiceWater created",
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/PublicServiceWater',
+                        },
+                    },
+                },
+            },
+        },
+        '/api/public-service-water/{id}': {
+            'get': {
+                'description': 'Get PublicServiceWater by id',
+                'tags': [
+                    'PublicServiceWater',
+                ],
+                'parameters': [
+                    {
+                        'name': 'id',
+                        'in': 'path',
+                        'description': 'id',
+                        'required': true,
+                        'schema': {
+                            'type': 'string',
+                        },
+                    },
+                ],
+                'responses': {
+                    '200': {
+                        'description': 'PublicServiceWater by id',
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/PublicServiceWater',
+                        },
+                    },
+                },
+            },
+            'delete': {
+                'description': 'Delete PublicServiceWater',
+                'tags': [
+                    'PublicServiceWater',
+                ],
+                'parameters': [
+                    {
+                        'name': 'id',
+                        'in': 'path',
+                        'description': 'id of PublicServiceWater object',
+                        'required': true,
+                        'schema': {
+                            'type': 'string',
+                        },
+                    },
+                ],
+                "responses": {
+                    "200": {
+                        "description": "PublicServiceWater deleted",
+                    },
+                },
+            },
+        }
     },
     'components': {
         'parameters': {
@@ -301,7 +416,32 @@ const config = {
                     },
                 },
             },
-
+            'PublicServiceWater': {
+                'required': [
+                    'data',
+                ],
+                'properties': {
+                    'id': {
+                        'type': 'string',
+                    },
+                    'data': {
+                        'type': 'string',
+                    },
+                    'date': {
+                        'type': 'string',
+                    },
+                },
+            },
+            'NewPublicServiceWater': {
+                'required': [
+                    'data',
+                ],
+                'properties': {
+                    'data': {
+                        'type': 'string',
+                    },
+                },
+            },
         },
         'responses': {},
         'securitySchemes': {

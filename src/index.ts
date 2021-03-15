@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/article', routes.antropogenezArticle);
 app.use('/api/f-article', routes.fArticle);
+app.use('/api/public-service-water', routes.publicServiceWater);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(JSON.stringify(config))));
 app.get('/oauth2-redirect.html', function (req, res) {
