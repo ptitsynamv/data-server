@@ -314,24 +314,27 @@ const config = {
                     },
                 },
             },
+        },
+        '/api/public-service-water/last': {
+            'get': {
+                'description': 'Get last water',
+                'tags': [
+                    'PublicServiceWater',
+                ],
+                'responses': {
+                    '200': {
+                        'description': 'Last PublicServiceWater',
+                        'schema': {
+                            'type': 'object',
+                            '$ref': '#/components/schemas/PublicServiceWater',
+                        },
+                    },
+                },
+            }
         }
     },
     'components': {
         'parameters': {
-            'email': {
-                'name': 'email',
-                'description': 'Email',
-                'in': 'formData',
-                'required': 'true',
-                'type': 'string',
-            },
-            'password': {
-                'name': 'password',
-                'description': 'Password',
-                'in': 'formData',
-                'required': 'true',
-                'type': 'string',
-            },
             'limit': {
                 'name': 'limit',
                 'description': 'Limit',
@@ -425,9 +428,37 @@ const config = {
                         'type': 'string',
                     },
                     'data': {
-                        'type': 'string',
+                        'type': 'WaterFormI',
                     },
                     'date': {
+                        'type': 'string',
+                    },
+                },
+            },
+            'WaterFormI': {
+                'properties': {
+                    'hot1': {
+                        'type': 'string',
+                    },
+                    'hot1CounterName': {
+                        'type': 'string',
+                    },
+                    'hot2': {
+                        'type': 'string',
+                    },
+                    'hot2CounterName': {
+                        'type': 'string',
+                    },
+                    'cold1': {
+                        'type': 'string',
+                    },
+                    'cold1CounterName': {
+                        'type': 'string',
+                    },
+                    'cold2': {
+                        'type': 'string',
+                    },
+                    'cold2CounterName': {
                         'type': 'string',
                     },
                 },
@@ -438,7 +469,7 @@ const config = {
                 ],
                 'properties': {
                     'data': {
-                        'type': 'string',
+                        'type': 'WaterFormI',
                     },
                 },
             },

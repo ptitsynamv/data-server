@@ -32,6 +32,18 @@ export interface PublicServiceWaterI extends NewPublicServiceWaterI {
 }
 
 export interface NewPublicServiceWaterI {
-    data: string;
     date: string;
+    data: WaterFormI
 }
+
+export interface WaterFormI {
+    hot1: string;
+    hot1CounterName: string;
+    hot2: string;
+    hot2CounterName: string;
+    cold1: string;
+    cold1CounterName: string;
+    cold2: string;
+    cold2CounterName: string;
+}
+

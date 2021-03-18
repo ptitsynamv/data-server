@@ -36,15 +36,36 @@ export const get = async (req, res) => {
     }
 };
 
-export const create = async (req, res) => {
-    const newWater: NewPublicServiceWaterI = req.body;
+export const getLast = async (req, res) => {
+    const waterLast = publicServiceWater
+        .find({})
+        .sort({_id: -1})
+        .limit(1);
 
+    waterLast.exec((err, water) => {
+        if (water && water.length) {
+            const waterData: PublicServiceWaterI = {
+                id: water[0]._id,
+                date: water[0].date,
+                data: water[0].data,
+            };
+            return res.status(200).json(waterData);
+        }
+        return res.status(200).json({});
+    });
+};
+
+export const create = async (req, res) => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();
 
-    const water = new publicServiceWater({...newWater, date: mm + '/' + dd + '/' + yyyy});
+    const w: NewPublicServiceWaterI = {
+        date: mm + '/' + dd + '/' + yyyy,
+        data: req.body.data
+    }
+    const water = new publicServiceWater(w);
     water.save(function (err, waterCreated) {
         if (err) {
             const e: ErrorResponse = {

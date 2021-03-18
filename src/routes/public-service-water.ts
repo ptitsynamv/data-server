@@ -4,6 +4,10 @@ import passport from 'passport'
 
 const router = express.Router();
 
+router.get('/last',
+    passport.authenticate('bearer', {session: false}),
+    controller.getLast
+);
 router.get('/',
     passport.authenticate('bearer', {session: false}),
     controller.get

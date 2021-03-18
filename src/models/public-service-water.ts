@@ -1,14 +1,21 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 const publicServiceWaterSchema = new Schema({
     date: {
         type: String,
-        required: true
+        required: true,
     },
     data: {
-        type: String,
-        required: true
+        hot1: String,
+        hot1CounterName: String,
+        hot2:String,
+        hot2CounterName: String,
+        cold1: String,
+        cold1CounterName: String,
+        cold2: String,
+        cold2CounterName: String,
     },
 });
 
