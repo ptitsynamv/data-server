@@ -1,10 +1,12 @@
 # Data server
 
 ## Installation
-1. Use `https://github.com/ptitsynamv/oauth2-server` project for authorization with Oauth2. 
-Credential: client id:swagger-id   
-2. Run `npm install`.
-3. Set values in .env file.
+1. Use nvm (Node Version Manager).
+Install node v20.11.0 and npm 10.2.4.
+2. Use `https://github.com/ptitsynamv/oauth2-server` project for authorization with Oauth2.
+Credential: client id:swagger-id
+3. Run `npm install`.
+4. Set values in .env file.
 
 ## Develop
 1. Run `npm start`.
